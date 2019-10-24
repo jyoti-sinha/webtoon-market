@@ -1,0 +1,6 @@
+.form-control.ng-touched, .custom-select.ng-touched{
+  border-color: #dc3545;
+}
+.form-control.ng-valid, .custom-select.ng-valid{
+  border-color: #28a745;
+}
