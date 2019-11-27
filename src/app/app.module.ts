@@ -13,17 +13,28 @@ import { LoginguardService } from './_core/services/loginguard.service';
 import { RegisterComponent } from './register/register.component';
 
 
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { appReducers } from './store/reducers/app.reducer';
 import { UserEffectClass } from './store/effects/user.effect';
 
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({
+    keys: ['loggedUser'],
+    rehydrate: true
+  })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule,
     //NGRX MODULES
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, {metaReducers}),
     EffectsModule.forRoot([UserEffectClass]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
     //====

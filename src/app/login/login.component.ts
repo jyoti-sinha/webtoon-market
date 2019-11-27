@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     } 
     db.users.get(this.loginForm.value, user => {
       if(user){
-        window.localStorage.setItem('user', JSON.stringify(user))
+        //window.localStorage.setItem('user', JSON.stringify(user))
         this._store.dispatch(new AppConfigAction(user));
         if(user.role === '1'){
           this.router.navigate(['admin']);

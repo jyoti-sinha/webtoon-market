@@ -16,7 +16,7 @@ export class AuthguardService implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean { 
-    let user = JSON.parse(window.localStorage.getItem('user'));
+    let user = JSON.parse(window.localStorage.getItem('loggedUser'));
     if(user){
       if(user.role === '1'){        
         return true;
