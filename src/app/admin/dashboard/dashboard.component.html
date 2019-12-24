@@ -10,15 +10,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async; let i=index" (click)="toUser(user.id)">
+        <tr *ngFor="let user of users; let i=index" (click)="toUser(user?.id)">
           <th scope="row">{{i+1}}</th>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td>{{user.active}}</td>
+          <td>{{user?.email}}</td>
+          <td>{{user?.role}}</td>
+          <td>{{user?.active}}</td>
         </tr>
         
-      </tbody>
+      </tbody> 
       </table>
-      <pre>{{(user$ | async) | json}}</pre>
-      <pre>{{(loggeduser$ | async) | json}}</pre>
+
+      <button (click)="addU()">Add</button>
+      <!-- <pre>{{(user$ | async) | json}}</pre>
+      <pre>{{(loggeduser$ | async) | json}}</pre> -->
       

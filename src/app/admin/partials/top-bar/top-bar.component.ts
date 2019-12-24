@@ -15,7 +15,7 @@ export class TopBarComponent implements OnInit {
   
   logout():void{
     window.localStorage.clear();
-    this.router.navigate([''])
+    this.router.navigate(['']) 
   }
 
 }
