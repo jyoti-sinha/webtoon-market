@@ -23,6 +23,9 @@ import { UserEffectClass } from './store/effects/user.effect';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { UserStoreService } from './_core/services/user/user-store.service';
 
+//DIALOG
+import { DialogModule } from './_core/dialog/dialog.module';
+
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({
@@ -37,8 +40,9 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     //NGRX MODULES
     StoreModule.forRoot(appReducers, {metaReducers}),
     EffectsModule.forRoot([UserEffectClass]),
-    StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     //====
+    DialogModule
    ],
   declarations: [ AppComponent, LoginComponent, NotfoundComponent, RegisterComponent ],
   bootstrap:    [ AppComponent ],

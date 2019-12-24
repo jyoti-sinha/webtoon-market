@@ -15,7 +15,17 @@ export class UserStoreService extends Store<UserState> {
 
   loadUsers(): void{
     db.users.toArray((data) => {
-      this.addUser(data)
+      if(data.length > 0){
+         const newSate = {
+          ...this.state,
+          users: [].concat(this.state.users, data)
+        }
+
+        this.setState(newSate);
+      }else{
+        this.addUser(initialState)
+      }
+      
     })
   }
 

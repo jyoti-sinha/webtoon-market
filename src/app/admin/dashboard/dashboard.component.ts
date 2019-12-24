@@ -52,7 +52,8 @@ export class DashboardComponent implements OnInit {
   }
 
   toUser(id){
-    this._store.dispatch(new actions.GetUserAction(id));
+    //this._store.dispatch(new actions.GetUserAction(id));
+    console.log(id)
   }
 
 
