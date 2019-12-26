@@ -10,15 +10,19 @@ import { TopBarComponent } from './partials/top-bar/top-bar.component';
 
 // import { UserService } from './_core/services/user.service';
 
+import { DialogModule } from '../_core/dialog/dialog.module';
+import { UserEditComponent } from './dashboard/user-edit/user-edit.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    DialogModule
     
   ],
-  declarations: [AdminComponent, DashboardComponent, AdminHeaderComponent, AdminFooterComponent, TopBarComponent]
+  declarations: [AdminComponent, DashboardComponent, AdminHeaderComponent, AdminFooterComponent, TopBarComponent, UserEditComponent],
+  entryComponents: [UserEditComponent]
 })
 export class AdminModule implements OnInit {
   ngOnInit(){

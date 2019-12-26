@@ -1,4 +1,4 @@
-export interface DialogConfig{
-  data?: any,
-  width?: string
+export class DialogConfig{
+  data?: any;
+  width?: string;
 }

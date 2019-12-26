@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users; let i=index" (click)="toUser(user?.id)">
+        <tr *ngFor="let user of users; let i=index" (click)="toUser(user)">
           <th scope="row">{{i+1}}</th>
           <td>{{user?.email}}</td>
           <td>{{user?.role}}</td>
@@ -21,5 +21,7 @@
       </table>
 
       <button (click)="addU()">Add</button>
-      <pre>{{state$ | json}}</pre>
+
+
+      
       

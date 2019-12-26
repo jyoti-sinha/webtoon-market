@@ -9,6 +9,8 @@ import { InsertationpointDirective } from './insertationpoint.directive';
     CommonModule
   ],
   declarations: [DialogComponent, InsertationpointDirective],
-  providers: [DialogService]
+  providers: [DialogService],
+  exports: [DialogComponent, InsertationpointDirective],
+  entryComponents: [DialogComponent]
 })
 export class DialogModule { }

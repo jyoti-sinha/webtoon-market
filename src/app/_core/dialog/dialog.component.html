@@ -1,4 +1,6 @@
-<div>
-  dialog works
-  <ng-template appInsertationpoint></ng-template>
+<div class="modal-container">
+    <div class="modal-backdrop" (click)="onOverlayClicked($event)"></div>
+    <div class="modal-body" [ngStyle]="{width: config?.width}">
+      <ng-template appInsertationpoint></ng-template>
+    </div>
 </div>

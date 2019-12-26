@@ -9,8 +9,10 @@ import * as actions from '../../store/actions/user.action';
 import { Router } from '@angular/router';
 
 import { AppConfigAction } from '../../store/actions/config.action';
-
 import { UserStoreService } from '../../_core/services/user/user-store.service';
+import { DialogService } from '../../_core/dialog/dialog.service';
+
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +29,9 @@ export class DashboardComponent implements OnInit {
     private userService: UserService, 
     private _store: Store<AppState>, 
     private _router: Router,
-    private userStore: UserStoreService) { }
+    private userStore: UserStoreService,
+    private dialogService: DialogService
+    ) { }
 
   
 
@@ -51,10 +55,11 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  toUser(id){
+  toUser(item){
     //this._store.dispatch(new actions.GetUserAction(id));
-    
-    console.log(id)
+    this.dialogService.open(UserEditComponent, {
+      data: item
+    })
   }
 
 
