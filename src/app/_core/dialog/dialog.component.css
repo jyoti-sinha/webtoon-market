@@ -33,6 +33,7 @@
   min-width: 200px;
   padding: 1em;
   z-index: 10000;
+  flex: none;
 }
 
 

@@ -59,7 +59,8 @@ export class DashboardComponent implements OnInit {
   toUser(item){
     //this._store.dispatch(new actions.GetUserAction(id));
     const dialog = this.dialogService.open(UserEditComponent, {
-      data: item
+      data: item,
+      width: '300px'
     })
     
    dialog.afterClosed.subscribe((res) => {
