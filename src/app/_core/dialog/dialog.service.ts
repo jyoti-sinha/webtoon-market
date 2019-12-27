@@ -21,11 +21,16 @@ export class DialogService {
     private injector: Injector
   ) { }
 
-  open(componentType:Type<any>, config: DialogConfig): void {
+  open(componentType:Type<any>, config: DialogConfig) {
       const map = new WeakMap();
       map.set(DialogConfig, config);
       const dialogRef = new DialogRef();
       map.set(DialogRef, dialogRef);
+
+      const dialog = dialogRef.afterClosed.subscribe((res) => { 
+          this.close();
+          dialog.unsubscribe();
+      })
 
 
       const factory = this.resolver.resolveComponentFactory(DialogComponent);
@@ -36,11 +41,18 @@ export class DialogService {
 
 
       this.dialogComponentRef = componentRef;
-      this.dialogComponentRef.instance.onClose.subscribe( => {
-
-      });
       this.dialogComponentRef.instance.childTypeComponent = componentType;
+      this.dialogComponentRef.instance.onClose.subscribe(() => {
+          this.close();
+      })
 
+      
+      return dialogRef;
+  }
+
+  close(): void {
+      this.appRef.detachView(this.dialogComponentRef.hostView);
+      this.dialogComponentRef.destroy();
   }
 
 }

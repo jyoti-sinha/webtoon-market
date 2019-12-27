@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AppConfigAction } from '../../store/actions/config.action';
 import { UserStoreService } from '../../_core/services/user/user-store.service';
 import { DialogService } from '../../_core/dialog/dialog.service';
+import { DialogRef } from '../../_core/dialog/dialog-ref';
 
 import { UserEditComponent } from './user-edit/user-edit.component';
 
@@ -57,9 +58,15 @@ export class DashboardComponent implements OnInit {
 
   toUser(item){
     //this._store.dispatch(new actions.GetUserAction(id));
-    this.dialogService.open(UserEditComponent, {
+    const dialog = this.dialogService.open(UserEditComponent, {
       data: item
     })
+    
+   dialog.afterClosed.subscribe((res) => {
+          console.log(res.data)
+     
+     
+   })
   }
 
 

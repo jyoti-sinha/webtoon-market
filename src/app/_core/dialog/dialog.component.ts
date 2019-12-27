@@ -23,18 +23,15 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   @ViewChild(InsertationpointDirective, {static: false}) insertationpoint: InsertationpointDirective;
   childTypeComponent: Type<any>;
 
-  private readonly _onClose: Subject<any>;
-  onClose: Observable<any>;
+  private readonly _onClose: Subject<any> = new Subject<any>();
+  onClose: Observable<any> = this._onClose.asObservable();
 
   constructor(
     private resolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
     private config: DialogConfig,
     private dialogRef: DialogRef
-  ) {
-    this._onClose = new Subject<any>();
-    this.onClose = this._onClose.asObservable();
-  }
+  ) {}
 
   ngAfterViewInit(){
       this.apendComponentToBody(this.childTypeComponent);
@@ -55,9 +52,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   onOverlayClicked(event: MouseEvent): void{
-    event.stopPropagation();
-    this._onClose.next(true);
-    console.log('closed')
+    this._onClose.next();
   }
 
 }

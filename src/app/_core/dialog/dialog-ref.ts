@@ -1,15 +1,18 @@
 import { Observable, Subject } from 'rxjs';
+import { DialogConfig } from './dialog-config';
 
 export class DialogRef{
-  afterClosed: Observable<any>;
-  private readonly _afterClosed: Subject<any>;
+  
+  
 
-  constructor(){
-    this._afterClosed = new Subject<any>();
-    this.afterClosed = this._afterClosed.asObservable(); 
-  }
 
-  close(result?: any): void{
+  constructor(){}
+
+  close(result?: DialogConfig): void{
       this._afterClosed.next(result);
   }
+
+
+  private readonly _afterClosed: Subject<any> = new Subject<any>() ;
+  afterClosed: Observable<any> = this._afterClosed.asObservable();
 }
