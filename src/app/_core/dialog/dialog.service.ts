@@ -27,7 +27,7 @@ export class DialogService {
       const dialogRef = new DialogRef();
       map.set(DialogRef, dialogRef);
 
-      const dialog = dialogRef.afterClosed.subscribe((res) => { 
+      const dialog = dialogRef.afterClosed.subscribe(() => { 
           this.close();
           dialog.unsubscribe();
       })
